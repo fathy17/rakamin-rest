@@ -1,23 +1,24 @@
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import "./App.css";
-import Detail from "./pages/Detail";
-import Pokemon from "./pages/Pokemon";
+import React from 'react';
+
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+
+import Nav from './components/Nav';
+import Articles from './containers/Articles';
+import Article from './containers/Article';
+import Category from './containers/Category';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/pokemon">
-          <Pokemon />
-        </Route>
-        <Route path="/detail/:pokemonName">
-          <Detail />
-        </Route>
-        <Route path="/">
-          <Redirect to="/pokemon" />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <div className="App">
+      <Router>
+        <Nav />
+        <Switch>
+          <Route path="/" component={Articles} exact />
+          <Route path="/article/:id" component={Article} exact />
+          <Route path="/category/:id" component={Category} exact />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
